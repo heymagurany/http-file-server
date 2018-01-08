@@ -15,6 +15,7 @@ func main() {
 	}
 	port, fileName := args[0], args[1]
 	http.HandleFunc("/", func(w http.ResponseWriter, req *http.Request) {
+		fmt.Printf("%s %s\n", req.Method, req.URL.String())
 		http.ServeFile(w, req, fileName)
 	})
 	log.Fatal(http.ListenAndServe(":"+port, nil))
